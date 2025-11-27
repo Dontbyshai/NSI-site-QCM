@@ -97,7 +97,7 @@ def resultat():
         'explication': explication_q5(os_choice)
     })
 
-    # Score sur 5
+    # Score sur 20
     return render_template("resultat.html",
                            nom=nom,
                            score=score,

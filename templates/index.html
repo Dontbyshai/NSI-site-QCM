@@ -1,5 +1,6 @@
 <!doctype html>
 <html lang="fr">
+
 <head>
   <meta charset="utf-8" />
   <title>e-Learning Cybersécurité — Cours + Quiz</title>
@@ -7,216 +8,228 @@
   <form id="quiz-form" action="{{ url_for('resultat') }}" method="post" novalidate>
 
 
-  <!-- CSS existant -->
-  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
-  <!-- JS existant -->
-  <script defer src="{{ url_for('static', filename='app.js') }}"></script>
-  <!-- 🎯 script du fond -->
-  <script defer src="{{ url_for('static', filename='bg-net.js') }}"></script>
+    <!-- CSS existant -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <!-- JS existant -->
+    <script defer src="{{ url_for('static', filename='app.js') }}"></script>
+    <!-- 🎯 script du fond -->
+    <script defer src="{{ url_for('static', filename='bg-net.js') }}"></script>
 </head>
+
 <body>
 
   <!-- CONSTELLATION -->
   <canvas id="net-bg" aria-hidden="true"></canvas>
 
-<header class="site-header">
-  <h1>Découvrir la cybersécurité</h1>
-  <p class="subtitle">Comprendre l’essentiel : VPN, pare-feu, HTTPS, phishing… puis tester ses connaissances.</p>
-</header>
+  <header class="site-header">
+    <h1>Découvrir la cybersécurité</h1>
+    <p class="subtitle">Comprendre l’essentiel : VPN, pare-feu, HTTPS, phishing… puis tester ses connaissances.</p>
+  </header>
 
-<main class="container">
-  {% if error %}
+  <main class="container">
+    {% if error %}
     <div class="alert">{{ error }}</div>
-  {% endif %}
+    {% endif %}
 
-  <section class="card">
-    <h2>Le mini-cours</h2>
-    <p>
-      La cybersécurité regroupe les pratiques qui protègent nos appareils, nos comptes et nos données.
-      Quelques réflexes simples font déjà une vraie différence :
-    </p>
-    <ul>
-  <li>
-    <strong>Mettre à jour son système et ses logiciels</strong><br>
-    Les mises à jour corrigent des failles de sécurité exploitées par des hackers. Un appareil non mis à jour
-    peut être vulnérable à des attaques automatisées ou ciblées. Pense à mettre à jour : l’OS, le navigateur,
-    les applications, les pilotes, le firmware du routeur et même les extensions.
-  </li>
+    <section class="card">
+      <h2>Le mini-cours</h2>
+      <p>
+        La cybersécurité regroupe les pratiques qui protègent nos appareils, nos comptes et nos données.
+        Quelques réflexes simples font déjà une vraie différence :
+      </p>
+      <ul>
+        <li>
+          <strong>Mettre à jour son système et ses logiciels</strong><br>
+          Les mises à jour corrigent des failles de sécurité exploitées par des hackers. Un appareil non mis à jour
+          peut être vulnérable à des attaques automatisées ou ciblées. Pense à mettre à jour : l’OS, le navigateur,
+          les applications, les pilotes, le firmware du routeur et même les extensions.
+        </li>
 
-  <li>
-    <strong>Utiliser un VPN</strong><br>
-    Un VPN chiffre tout le trafic et masque l’adresse IP, ce qui protège la navigation surtout sur les réseaux Wi-Fi publics.
-    Il empêche l’interception de données (sniffing). Par contre, éviter les VPN gratuits : ils peuvent revendre les données.
-  </li>
+        <li>
+          <strong>Utiliser un VPN</strong><br>
+          Un VPN chiffre tout le trafic et masque l’adresse IP, ce qui protège la navigation surtout sur les réseaux
+          Wi-Fi publics.
+          Il empêche l’interception de données (sniffing). Par contre, éviter les VPN gratuits : ils peuvent revendre
+          les données.
+        </li>
 
-  <li>
-    <strong>Activer le pare-feu</strong><br>
-    Le pare-feu filtre les connexions entrantes et sortantes. Il bloque les ports suspects et empêche certaines attaques
-    comme les scans de ports ou la communication de malwares vers l’extérieur. Assure-toi que le pare-feu du système 
-    et celui du routeur sont activés.
-  </li>
+        <li>
+          <strong>Activer le pare-feu</strong><br>
+          Le pare-feu filtre les connexions entrantes et sortantes. Il bloque les ports suspects et empêche certaines
+          attaques
+          comme les scans de ports ou la communication de malwares vers l’extérieur. Assure-toi que le pare-feu du
+          système
+          et celui du routeur sont activés.
+        </li>
 
-  <li>
-    <strong>Vérifier la présence du HTTPS</strong><br>
-    Le cadenas dans la barre d’adresse indique une connexion chiffrée entre toi et le site. Cela protège les données
-    envoyées (mots de passe, paiements). Attention : HTTPS ne garantit pas que le site est légitime, seulement
-    que la communication est sécurisée.
-  </li>
+        <li>
+          <strong>Vérifier la présence du HTTPS</strong><br>
+          Le cadenas dans la barre d’adresse indique une connexion chiffrée entre toi et le site. Cela protège les
+          données
+          envoyées (mots de passe, paiements). Attention : HTTPS ne garantit pas que le site est légitime, seulement
+          que la communication est sécurisée.
+        </li>
 
-  <li>
-    <strong>Se méfier du phishing</strong><br>
-    Le phishing cherche à voler des données (mots de passe, codes 2FA, paiements…) en imitant un site ou un service.
-    Indices : message urgent, liens suspects, expéditeur étrange, fautes, demande d’informations sensibles.
-    Toujours taper l’adresse du site manuellement au lieu de cliquer dans l’e-mail.
-  </li>
+        <li>
+          <strong>Se méfier du phishing</strong><br>
+          Le phishing cherche à voler des données (mots de passe, codes 2FA, paiements…) en imitant un site ou un
+          service.
+          Indices : message urgent, liens suspects, expéditeur étrange, fautes, demande d’informations sensibles.
+          Toujours taper l’adresse du site manuellement au lieu de cliquer dans l’e-mail.
+        </li>
 
-  <li>
-    <strong>Utiliser des mots de passe solides et uniques</strong><br>
-    Un mot de passe doit être long (14+ caractères), complexe et différent pour chaque compte.
-    Un gestionnaire de mots de passe (ex. Bitwarden, 1Password) permet de les stocker facilement.
-    Toujours activer l’authentification à deux facteurs (2FA) pour renforcer la sécurité.
-  </li>
+        <li>
+          <strong>Utiliser des mots de passe solides et uniques</strong><br>
+          Un mot de passe doit être long (14+ caractères), complexe et différent pour chaque compte.
+          Un gestionnaire de mots de passe (ex. Bitwarden, 1Password) permet de les stocker facilement.
+          Toujours activer l’authentification à deux facteurs (2FA) pour renforcer la sécurité.
+        </li>
 
-  <li>
-    <strong>Protéger son réseau domestique</strong><br>
-    Changer le mot de passe du routeur, désactiver WPS, activer WPA3 si possible,
-    et créer un Wi-Fi invité pour isoler les appareils non sûrs.
-  </li>
+        <li>
+          <strong>Protéger son réseau domestique</strong><br>
+          Changer le mot de passe du routeur, désactiver WPS, activer WPA3 si possible,
+          et créer un Wi-Fi invité pour isoler les appareils non sûrs.
+        </li>
 
-  <li>
-    <strong>Éviter les clés USB inconnues</strong><br>
-    Une simple insertion peut exécuter du code malveillant. En cybersécurité, ce type d’attaque est classique.
-  </li>
+        <li>
+          <strong>Éviter les clés USB inconnues</strong><br>
+          Une simple insertion peut exécuter du code malveillant. En cybersécurité, ce type d’attaque est classique.
+        </li>
 
-  <li>
-    <strong>Télécharger uniquement depuis des sources officielles</strong><br>
-    Éviter les cracks, logiciels piratés ou installateurs provenant de sites non vérifiés. 
-    Beaucoup contiennent des malwares, chevaux de Troie ou mineurs cachés.
-  </li>
+        <li>
+          <strong>Télécharger uniquement depuis des sources officielles</strong><br>
+          Éviter les cracks, logiciels piratés ou installateurs provenant de sites non vérifiés.
+          Beaucoup contiennent des malwares, chevaux de Troie ou mineurs cachés.
+        </li>
 
-  <li>
-    <strong>Désactiver l'exécution automatique</strong><br>
-    L’autorun peut lancer automatiquement un programme depuis une clé USB ou un disque.
-    Le désactiver réduit fortement certains types d’infections.
-  </li>
+        <li>
+          <strong>Désactiver l'exécution automatique</strong><br>
+          L’autorun peut lancer automatiquement un programme depuis une clé USB ou un disque.
+          Le désactiver réduit fortement certains types d’infections.
+        </li>
 
-  <li>
-    <strong>Utiliser un antivirus / antimalware sérieux</strong><br>
-    Un bon antivirus détecte les comportements suspects, bloque des ransomwares, trojans ou spyware.
-    Préférer des solutions reconnues plutôt que des outils gratuits trop agressifs.
-  </li>
+        <li>
+          <strong>Utiliser un antivirus / antimalware sérieux</strong><br>
+          Un bon antivirus détecte les comportements suspects, bloque des ransomwares, trojans ou spyware.
+          Préférer des solutions reconnues plutôt que des outils gratuits trop agressifs.
+        </li>
 
-  <li>
-    <strong>Contrôler les permissions des applications</strong><br>
-    Vérifier régulièrement les accès au micro, caméra, fichiers, localisation et tablette réseau.
-    Beaucoup d’applications demandent plus que nécessaire.
-  </li>
+        <li>
+          <strong>Contrôler les permissions des applications</strong><br>
+          Vérifier régulièrement les accès au micro, caméra, fichiers, localisation et tablette réseau.
+          Beaucoup d’applications demandent plus que nécessaire.
+        </li>
 
-  <li>
-    <strong>Sauvegarder ses données régulièrement</strong><br>
-    Une sauvegarde hors ligne + une sauvegarde cloud = protection contre les ransomwares, pannes ou suppressions accidentelles.
-  </li>
-    </ul>
-    <p>
-      Le but n’est pas de tout connaître, mais d’adopter de bonnes habitudes au quotidien.
-    </p>
-  </section>
+        <li>
+          <strong>Sauvegarder ses données régulièrement</strong><br>
+          Une sauvegarde hors ligne + une sauvegarde cloud = protection contre les ransomwares, pannes ou suppressions
+          accidentelles.
+        </li>
+      </ul>
+      <p>
+        Le but n’est pas de tout connaître, mais d’adopter de bonnes habitudes au quotidien.
+      </p>
+    </section>
 
-  <section class="card">
-    <h2>Quiz (5 questions) notée sur 20</h2>
-    <form id="quiz-form" action="{{ url_for('resultat') }}" method="post">
-      <div class="field">
-        <label for="nom">Votre nom</label>
-        <input type="text" id="nom" name="nom" placeholder="Ex. Alex Martin" required>
+    <section class="card">
+      <h2>Quiz (5 questions) notée sur 20</h2>
+      <form id="quiz-form" action="{{ url_for('resultat') }}" method="post">
+        <div class="field">
+          <label for="nom">Votre nom</label>
+          <input type="text" id="nom" name="nom" placeholder="Ex. Alex Martin" required>
+        </div>
+
+        <div class="field">
+          <label for="os">Votre système que vous utiliser au quotidien ?</label>
+          <select id="os" name="os" required>
+            <option value="">— Choisir —</option>
+            <option value="windows">Windows</option>
+            <option value="macos">macOS</option>
+            <option value="linux">Linux</option>
+          </select>
+        </div>
+
+        <!-- Q1 -->
+        <fieldset class="q-block">
+          <legend>Q1 — À quoi sert principalement un VPN ?</legend>
+          <label><input type="radio" name="q1" value="a"> Accélérer le débit Internet</label>
+          <label><input type="radio" name="q1" value="b"> Chiffrer la connexion et masquer l’adresse IP</label>
+          <label><input type="radio" name="q1" value="c"> Supprimer les publicités sur tous les sites</label>
+        </fieldset>
+
+        <!-- Q2 -->
+        <fieldset class="q-block">
+          <legend>Q2 — Le rôle d’un pare-feu est de…</legend>
+          <label><input type="radio" name="q2" value="a"> Filtrer le trafic réseau selon des règles</label>
+          <label><input type="radio" name="q2" value="b"> Sauvegarder automatiquement les fichiers</label>
+          <label><input type="radio" name="q2" value="c"> Défragmenter le disque dur</label>
+        </fieldset>
+
+        <!-- Q3 -->
+        <fieldset class="q-block">
+          <legend>Q3 — Le cadenas dans le navigateur (HTTPS) indique que…</legend>
+          <label><input type="radio" name="q3" value="a"> Le site est forcément officiel</label>
+          <label><input type="radio" name="q3" value="b"> Le site ne peut pas avoir de malware</label>
+          <label><input type="radio" name="q3" value="c"> La connexion est chiffrée avec un certificat</label>
+        </fieldset>
+
+        <!-- Q4 -->
+        <fieldset class="q-block">
+          <legend>Q4 — Quel message ressemble le plus à du phishing ?</legend>
+          <label><input type="radio" name="q4" value="a"> “Voici la newsletter que vous avez demandée.”</label>
+          <label><input type="radio" name="q4" value="b"> “URGENT : Votre compte sera supprimé aujourd’hui.
+            Connectez-vous ici.”</label>
+          <label><input type="radio" name="q4" value="c"> “Votre colis est livré. Bonne journée !”</label>
+        </fieldset>
+
+        <!-- Q5 personnalisée -->
+        <fieldset class="q-block os-q" id="q5-windows" hidden>
+          <legend>Q5 (Windows) — Pour renforcer la sécurité, où lancer les mises à jour système ?</legend>
+          <label><input type="radio" name="q5" value="a"> Paramètres &gt; Windows Update</label>
+          <label><input type="radio" name="q5" value="b"> Panneau de configuration &gt; Souris</label>
+          <label><input type="radio" name="q5" value="c"> Bloc-notes</label>
+        </fieldset>
+
+        <fieldset class="q-block os-q" id="q5-macos" hidden>
+          <legend>Q5 (macOS) — Où vérifier et appliquer les mises à jour système ?</legend>
+          <label><input type="radio" name="q5" value="a"> Safari &gt; Préférences &gt; Avancées</label>
+          <label><input type="radio" name="q5" value="b"> Réglages Système &gt; Général &gt; Mise à jour de
+            logiciels</label>
+          <label><input type="radio" name="q5" value="c"> Applications &gt; Utilitaires &gt; Terminal uniquement</label>
+        </fieldset>
+
+        <fieldset class="q-block os-q" id="q5-linux" hidden>
+          <legend>Q5 (Linux) — Comment met-on à jour un système de façon standard ?</legend>
+          <label><input type="radio" name="q5" value="a"> En téléchargeant des .exe depuis un blog</label>
+          <label><input type="radio" name="q5" value="b"> En supprimant /etc au démarrage</label>
+          <label><input type="radio" name="q5" value="c"> Via le gestionnaire de paquets (ex. apt, dnf, pacman)</label>
+        </fieldset>
+
+        <div class="actions">
+          <button type="submit" id="submit-btn">Valider mes réponses</button>
+        </div>
+      </form>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <small>Projet e-learning de Noé et Shaï — Saint alyre option NSI</small>
+  </footer>
+
+  <!-- === Modal de confirmation personnalisée === -->
+  <div id="confirm-modal" class="modal-backdrop" hidden aria-hidden="true" role="dialog" aria-modal="true"
+    aria-labelledby="confirm-title">
+    <div class="modal-box" role="document">
+      <h3 id="confirm-title">Confirmer l’envoi</h3>
+      <p>Voulez-vous vraiment envoyer vos réponses ? Vous pourrez consulter votre résultat ensuite.</p>
+      <div class="modal-actions">
+        <button id="modal-yes" class="btn">Oui, envoyer</button>
+        <button id="modal-no" class="btn btn-secondary">Non, vérifier</button>
       </div>
-
-      <div class="field">
-        <label for="os">Votre système que vous utiliser au quotidien ?</label>
-        <select id="os" name="os" required>
-          <option value="">— Choisir —</option>
-          <option value="windows">Windows</option>
-          <option value="macos">macOS</option>
-          <option value="linux">Linux</option>
-        </select>
-      </div>
-
-      <!-- Q1 -->
-      <fieldset class="q-block">
-        <legend>Q1 — À quoi sert principalement un VPN ?</legend>
-        <label><input type="radio" name="q1" value="a"> Accélérer le débit Internet</label>
-        <label><input type="radio" name="q1" value="b"> Chiffrer la connexion et masquer l’adresse IP</label>
-        <label><input type="radio" name="q1" value="c"> Supprimer les publicités sur tous les sites</label>
-      </fieldset>
-
-      <!-- Q2 -->
-      <fieldset class="q-block">
-        <legend>Q2 — Le rôle d’un pare-feu est de…</legend>
-        <label><input type="radio" name="q2" value="a"> Filtrer le trafic réseau selon des règles</label>
-        <label><input type="radio" name="q2" value="b"> Sauvegarder automatiquement les fichiers</label>
-        <label><input type="radio" name="q2" value="c"> Défragmenter le disque dur</label>
-      </fieldset>
-
-      <!-- Q3 -->
-      <fieldset class="q-block">
-        <legend>Q3 — Le cadenas dans le navigateur (HTTPS) indique que…</legend>
-        <label><input type="radio" name="q3" value="a"> Le site est forcément officiel</label>
-        <label><input type="radio" name="q3" value="b"> Le site ne peut pas avoir de malware</label>
-        <label><input type="radio" name="q3" value="c"> La connexion est chiffrée avec un certificat</label>
-      </fieldset>
-
-      <!-- Q4 -->
-      <fieldset class="q-block">
-        <legend>Q4 — Quel message ressemble le plus à du phishing ?</legend>
-        <label><input type="radio" name="q4" value="a"> “Voici la newsletter que vous avez demandée.”</label>
-        <label><input type="radio" name="q4" value="b"> “URGENT : Votre compte sera supprimé aujourd’hui. Connectez-vous ici.”</label>
-        <label><input type="radio" name="q4" value="c"> “Votre colis est livré. Bonne journée !”</label>
-      </fieldset>
-
-      <!-- Q5 personnalisée -->
-      <fieldset class="q-block os-q" id="q5-windows" hidden>
-        <legend>Q5 (Windows) — Pour renforcer la sécurité, où lancer les mises à jour système ?</legend>
-        <label><input type="radio" name="q5" value="a"> Paramètres &gt; Windows Update</label>
-        <label><input type="radio" name="q5" value="b"> Panneau de configuration &gt; Souris</label>
-        <label><input type="radio" name="q5" value="c"> Bloc-notes</label>
-      </fieldset>
-
-      <fieldset class="q-block os-q" id="q5-macos" hidden>
-        <legend>Q5 (macOS) — Où vérifier et appliquer les mises à jour système ?</legend>
-        <label><input type="radio" name="q5" value="a"> Safari &gt; Préférences &gt; Avancées</label>
-        <label><input type="radio" name="q5" value="b"> Réglages Système &gt; Général &gt; Mise à jour de logiciels</label>
-        <label><input type="radio" name="q5" value="c"> Applications &gt; Utilitaires &gt; Terminal uniquement</label>
-      </fieldset>
-
-      <fieldset class="q-block os-q" id="q5-linux" hidden>
-        <legend>Q5 (Linux) — Comment met-on à jour un système de façon standard ?</legend>
-        <label><input type="radio" name="q5" value="a"> En téléchargeant des .exe depuis un blog</label>
-        <label><input type="radio" name="q5" value="b"> En supprimant /etc au démarrage</label>
-        <label><input type="radio" name="q5" value="c"> Via le gestionnaire de paquets (ex. apt, dnf, pacman)</label>
-      </fieldset>
-
-      <div class="actions">
-        <button type="submit" id="submit-btn">Valider mes réponses</button>
-      </div>
-    </form>
-  </section>
-</main>
-
-<footer class="site-footer">
-  <small>Projet e-learning de Noé et Shaï — Saint alyre option NSI</small>
-</footer>
-
-<!-- === Modal de confirmation personnalisée === -->
-<div id="confirm-modal" class="modal-backdrop" hidden aria-hidden="true" role="dialog" aria-modal="true" aria-labelledby="confirm-title">
-  <div class="modal-box" role="document">
-    <h3 id="confirm-title">Confirmer l’envoi</h3>
-    <p>Voulez-vous vraiment envoyer vos réponses ? Vous pourrez consulter votre résultat ensuite.</p>
-    <div class="modal-actions">
-      <button id="modal-yes" class="btn">Oui, envoyer</button>
-      <button id="modal-no" class="btn btn-secondary">Non, vérifier</button>
     </div>
   </div>
-</div>
-<!-- =========================================== -->
+  <!-- =========================================== -->
 
 </body>
+
 </html>

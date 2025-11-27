@@ -2,27 +2,41 @@
    Feuille de style principale 
    ============================ */
 
-/*  Réglages couleur  */
+/*  Réglages couleur (Palette) */
 :root {
-  --bg: #0f172a;      /* bleu nuit */
-  --card: #111827;    /* gris très sombre */
-  --text: #e5e7eb;    /* gris clair */
-  --accent: #22c55e;  /* vert */
-  --muted: #9ca3af;   /* gris moyen */
-  --danger: #ef4444;  /* rouge */
+  --bg: #0f172a;
+  /* Couleur de fond principale (bleu nuit) */
+  --card: #111827;
+  /* Couleur de fond des cartes (gris très sombre) */
+  --text: #e5e7eb;
+  /* Couleur du texte (gris clair) */
+  --accent: #22c55e;
+  /* Couleur d'accentuation (vert) pour boutons/validations */
+  --muted: #9ca3af;
+  /* Couleur pour texte secondaire (gris moyen) */
+  --danger: #ef4444;
+  /* Couleur pour erreurs (rouge) */
 }
 
-* { box-sizing: border-box; }
-html, body { height: 100%; }
+/* Règle pour que les largeurs incluent les bordures (évite les débordements) */
+* {
+  box-sizing: border-box;
+}
 
-/*  FOND lisse */
-body{
+html,
+body {
+  height: 100%;
+}
+
+/*  FOND DE PAGE (BODY) */
+body {
   margin: 0;
+  /* Police d'écriture moderne */
   font-family: system-ui, -apple-system, Segoe UI, Roboto, "Helvetica Neue", Arial, "Noto Sans", "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", sans-serif;
   color: var(--text);
   line-height: 1.6;
 
-  /* background couleur */
+  /* Dégradé complexe pour l'effet "espace" */
   background:
     radial-gradient(1200px 800px at 70% -10%, #10182f 0%, #0b1220 60%),
     linear-gradient(160deg, #0b1220 0%, var(--bg) 100%);
@@ -31,44 +45,53 @@ body{
   background-color: #0b1220;
 }
 
-/* En-tête du site */
+/* EN-TÊTE (Titre du site) */
 .site-header {
   padding: 32px 16px;
   text-align: center;
 }
+
 .site-header h1 {
   margin: 0 0 6px 0;
   font-size: 2rem;
+  /* Taille du gros titre */
 }
+
 .subtitle {
   margin: 0;
   color: var(--muted);
+  /* Sous-titre en gris */
 }
 
-/* Conteneur central */
+/* CONTENEUR CENTRAL (Limite la largeur du contenu) */
 .container {
   width: 100%;
   max-width: 900px;
+  /* Largeur max pour ne pas être trop étiré sur grand écran */
   margin: 0 auto;
+  /* Centre le bloc horizontalement */
   padding: 16px;
 }
 
-/* Cartes de contenu */
+/* CARTES (Les blocs gris contenant le cours et le quiz) */
 .card {
   background: var(--card);
   border: 1px solid #1f2937;
   border-radius: 12px;
+  /* Coins arrondis */
   padding: 16px;
   margin: 16px 0;
-  box-shadow: 0 10px 20px rgba(0,0,0,.25);
+  box-shadow: 0 10px 20px rgba(0, 0, 0, .25);
+  /* Ombre portée */
 }
 
-/* Glass blur sous le contenu (reversible) */
-/* Blur uniquement sur les cartes */
+/* EFFET VERRE DÉPOLI (Glassmorphism) */
 .card {
   background: rgba(17, 24, 39, 0.55);
+  /* Fond semi-transparent */
   border: none;
   backdrop-filter: blur(8px) saturate(120%);
+  /* Flou derrière la carte */
   -webkit-backdrop-filter: blur(8px) saturate(120%);
   box-shadow: none;
 }
@@ -82,10 +105,98 @@ body{
   box-shadow: none;
 }
 
+/* Fallback si le navigateur ne supporte pas le flou */
 @supports not ((backdrop-filter: blur(8px))) {
-  .card, .site-header { background: var(--card); }
+
+  .card,
+  .site-header {
+    background: var(--card);
+  }
 }
 
+/* BOUTONS & ACTIONS */
+.actions {
+  margin-top: 16px;
+  display: flex;
+  gap: 12px;
+  /* Espace entre les boutons */
+}
+
+button,
+.btn {
+  appearance: none;
+  border: none;
+  border-radius: 10px;
+  padding: 10px 14px;
+  background: var(--accent);
+  /* Fond vert */
+  color: #062a12;
+  /* Texte vert foncé */
+  font-weight: 700;
+  cursor: pointer;
+  text-decoration: none;
+  display: inline-block;
+}
+
+button:hover,
+.btn:hover {
+  filter: brightness(1.05);
+  /* Éclaircit au survol */
+}
+
+/* PIED DE PAGE */
+.site-footer {
+  text-align: center;
+  padding: 24px 16px 40px;
+  color: var(--muted);
+}
+
+/* RESPONSIVE (Adaptation Mobile) */
+@media (max-width: 600px) {
+
+  /* Si l'écran fait moins de 600px de large */
+  .site-header h1 {
+    font-size: 1.5rem;
+    /* Réduit le titre */
+  }
+
+  .score {
+    font-size: 1.6rem;
+    /* Réduit le score */
+  }
+}
+
+/* ANIMATION DE FOND (Canvas étoiles) */
+#net-bg {
+  position: fixed;
+  inset: 0;
+  width: 100vw;
+  height: 100vh;
+  z-index: -1;
+  /* Place le canvas DERRIÈRE tout le contenu */
+  display: block;
+  pointer-events: none;
+  /* Laisse passer les clics au travers */
+  image-rendering: -webkit-optimize-contrast;
+  image-rendering: crisp-edges;
+  transform: translateZ(0);
+}
+
+/* S'assure que le contenu passe DEVANT le fond animé */
+.site-header,
+.container,
+.site-footer,
+.card {
+  position: relative;
+  z-index: 0;
+}
+
+
+/* ============================
+   Styles spécifiques à l'Index (Formulaire)
+   ============================ */
+
+/* Alertes (Message d'erreur global) */
 .alert {
   background: rgba(239, 68, 68, .15);
   border: 1px solid var(--danger);
@@ -95,123 +206,70 @@ body{
   margin-bottom: 12px;
 }
 
-/* Formulaires  */
+/* Champs de formulaire */
 .field {
   display: grid;
   gap: 6px;
   margin-bottom: 12px;
 }
+
 .field input[type="text"],
 .field select {
   padding: 10px 12px;
   border-radius: 10px;
   border: 1px solid #374151;
   background: #0b1020;
+  /* Fond sombre des inputs */
   color: var(--text);
 }
 
+/* Bloc Question (Cadre pointillé) */
 .q-block {
   border: 1px dashed #334155;
   border-radius: 10px;
   padding: 10px 12px;
   margin: 12px 0;
 }
+
 .q-block legend {
   padding: 0 6px;
   color: var(--accent);
+  /* Titre de la question en vert */
   font-weight: 600;
 }
+
 .q-block label {
   display: block;
   padding: 6px 0;
 }
 
-/* Bloc de la question 5 (affichage conditionnel) */
-.os-q[hidden] { display: none !important; }
-
-/* Boutons & actions  */
-.actions {
-  margin-top: 16px;
-  display: flex;
-  gap: 12px;
-}
-button, .btn {
-  appearance: none;
-  border: none;
-  border-radius: 10px;
-  padding: 10px 14px;
-  background: var(--accent);
-  color: #062a12;
-  font-weight: 700;
-  cursor: pointer;
-  text-decoration: none;
-  display: inline-block;
-}
-button:hover, .btn:hover { filter: brightness(1.05); }
-
-/*  Table de correction  */
-table.correction {
-  width: 100%;
-  border-collapse: collapse;
-}
-table.correction th, table.correction td {
-  border-bottom: 1px solid #1f2937;
-  padding: 8px 10px;
-  text-align: left;
-}
-table.correction th { color: var(--muted); }
-.score { font-size: 2rem; font-weight: 800; }
-
-/*  Pied de page  */
-.site-footer {
-  text-align: center;
-  padding: 24px 16px 40px;
-  color: var(--muted);
+/* Cache la question 5 si ce n'est pas le bon OS */
+.os-q[hidden] {
+  display: none !important;
 }
 
-/* Réactivité simple pour mobiles */
-@media (max-width: 600px) {
-  .site-header h1 { font-size: 1.5rem; }
-  .score { font-size: 1.6rem; }
-}
-
-/*  Constellation en arrière-plan  */
-#net-bg{
-  position: fixed;
-  inset: 0;
-  width: 100vw;
-  height: 100vh;
-  z-index: -1;           /* derrière tout */
-  display: block;
-  pointer-events: none;  /* ne bloque pas les clics */
-  image-rendering: -webkit-optimize-contrast;
-  image-rendering: crisp-edges;
-  transform: translateZ(0);
-}
-/* Contenu au-dessus du canvas */
-.site-header, .container, .site-footer, .card { position: relative; z-index: 0; }
-
-
-/*  Modal personnalisée  */
+/* MODALE (Fenêtre de confirmation) */
 .modal-backdrop {
   position: fixed;
-  inset: 0; /* top:0; right:0; bottom:0; left:0; */
+  inset: 0;
   display: flex;
   align-items: center;
   justify-content: center;
-  background: rgba(2,6,23,0.6); /* sombre translucide */
+  background: rgba(2, 6, 23, 0.6);
+  /* Fond noir semi-transparent */
   z-index: 9999;
+  /* Tout devant */
   padding: 20px;
 }
 
 .modal-box {
   width: 100%;
   max-width: 520px;
-  background: var(--card); /* réutilise la variable existante */
+  background: var(--card);
   border-radius: 12px;
   padding: 18px;
   border: 1px solid #24303b;
-  box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
 }
 
 .modal-box h3 {
@@ -219,7 +277,11 @@ table.correction th { color: var(--muted); }
   color: var(--accent);
   font-size: 1.1rem;
 }
-.modal-box p { margin: 0 0 14px; color: var(--text); }
+
+.modal-box p {
+  margin: 0 0 14px;
+  color: var(--text);
+}
 
 .modal-actions {
   display: flex;
@@ -227,7 +289,7 @@ table.correction th { color: var(--muted); }
   justify-content: flex-end;
 }
 
-/* Bouton secondaire */
+/* Bouton secondaire (Non / Annuler) */
 .btn-secondary {
   background: transparent;
   color: var(--text);
@@ -236,28 +298,39 @@ table.correction th { color: var(--muted); }
 
 /* Accessibilité : focus visible */
 .modal-box button:focus {
-  outline: 3px solid rgba(34,197,94,0.25);
+  outline: 3px solid rgba(34, 197, 94, 0.25);
   outline-offset: 2px;
 }
-/* Cache vraiment la modale si [hidden] est présent */
-.modal-backdrop[hidden] { display: none !important; }
-/* bloquer le scroll quand le body a la classe below-modal */
-body.below-modal { overflow: hidden; }
-/* === Erreurs inline custom (style "pro")  */
+
+/* Cache vraiment la modale */
+.modal-backdrop[hidden] {
+  display: none !important;
+}
+
+/* Bloque le scroll de la page quand la modale est ouverte */
+body.below-modal {
+  overflow: hidden;
+}
+
+/* === GESTION DES ERREURS (Rouge) === */
 .field.invalid input,
 .field.invalid select {
   border-color: #ef4444;
-  box-shadow: 0 0 0 2px rgba(239,68,68,.25);
+  /* Bordure rouge */
+  box-shadow: 0 0 0 2px rgba(239, 68, 68, .25);
+  /* Halo rouge */
 }
 
 .q-block.invalid {
   border-color: #ef4444;
-  background: rgba(239,68,68,.06);
+  background: rgba(239, 68, 68, .06);
+  /* Fond rouge très léger */
 }
 
 .error-msg {
   margin-top: 6px;
-  color: #fecaca;              /* texte d’erreur doux */
+  color: #fecaca;
+  /* Texte rouge clair */
   font-size: 0.95rem;
 }
 
@@ -265,21 +338,39 @@ body.below-modal { overflow: hidden; }
   color: #ef9a9a;
 }
 
-/* état "ok" discret si tu veux (optionnel) */
+/* === GESTION DU SUCCÈS (Vert) === */
 .field.valid input,
 .field.valid select {
   border-color: #22c55e;
-  box-shadow: 0 0 0 2px rgba(34,197,94,.18);
+  /* Bordure verte */
+  box-shadow: 0 0 0 2px rgba(34, 197, 94, .18);
+  /* Halo vert */
 }
-  #net-bg{
-      position: fixed;
-      inset: 0;
-      width: 100vw;
-      height: 100vh;
-      z-index: -1;          /* derrière tout */
-      display: block;
-      pointer-events: none; /* ne bloque pas les clics */
-    }
-    /* s’assure que le contenu est au-dessus */
-    .site-header, .container, .site-footer, .card { position: relative; z-index: 0; }
 
+
+/* ============================
+   Styles spécifiques aux Résultats
+   ============================ */
+
+/* Tableau de correction */
+table.correction {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+table.correction th,
+table.correction td {
+  border-bottom: 1px solid #1f2937;
+  /* Ligne de séparation */
+  padding: 8px 10px;
+  text-align: left;
+}
+
+table.correction th {
+  color: var(--muted);
+}
+
+.score {
+  font-size: 2rem;
+  font-weight: 800;
+}

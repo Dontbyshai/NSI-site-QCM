@@ -1,5 +1,6 @@
 <!doctype html>
 <html lang="fr">
+
 <head>
   <meta charset="utf-8" />
   <title>Résultats du quiz</title>
@@ -8,6 +9,7 @@
   <!-- Fond constellation (même script que sur l’index) -->
   <script defer src="{{ url_for('static', filename='bg-net.js') }}"></script>
 </head>
+
 <body>
   <!-- Canvas en ARRIÈRE-PLAN -->
   <canvas id="net-bg" aria-hidden="true"></canvas>
@@ -22,11 +24,11 @@
       <p class="score">{{ score }} / {{ total }}</p>
       <p>
         {% if score == total %}
-          Excellent ! Vous maîtrisez les bases présentées.
+        Excellent ! Vous maîtrisez les bases présentées.
         {% elif score >= 12 %}
-          Bien joué, vous êtes sur la bonne voie. Relisez les points manqués ci-dessous.
+        Bien joué, vous êtes sur la bonne voie. Relisez les points manqués ci-dessous.
         {% else %}
-          Pas grave ! Reprenez le mini-cours et retentez votre chance.
+        Pas grave ! Reprenez le mini-cours et retentez votre chance.
         {% endif %}
       </p>
     </section>
@@ -44,12 +46,12 @@
         </thead>
         <tbody>
           {% for d in details %}
-            <tr>
-              <td>{{ d.numero }}</td>
-              <td>{{ d.votre_reponse }}</td>
-              <td>{{ d.bonne_reponse }}</td>
-              <td>{{ d.explication }}</td>
-            </tr>
+          <tr>
+            <td>{{ d.numero }}</td>
+            <td>{{ d.votre_reponse }}</td>
+            <td>{{ d.bonne_reponse }}</td>
+            <td>{{ d.explication }}</td>
+          </tr>
           {% endfor %}
         </tbody>
       </table>
@@ -58,8 +60,8 @@
     <section class="card">
       <h2>Participants & répartition des tâches</h2>
       <ul>
-        <li><strong>Noé</strong> — Rédaction du cours + HTML</li>
-        <li><strong>Shaï</strong> — CSS + Flask + JavaScript</li>
+        <li><strong>Noé</strong> — Rédaction du cours + HTML + Python </li>
+        <li><strong>Shaï</strong> — CSS + JavaScript</li>
       </ul>
       <p>
         Organisation&nbsp;: échanges pendant les cours et à la maison via Telegram.
@@ -81,4 +83,5 @@
     <small>Projet e-learning — Saint Alyre (NSI)</small>
   </footer>
 </body>
+
 </html>
