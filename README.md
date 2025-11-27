@@ -1,47 +1,60 @@
-🧠 QCM NSI – Projet debut d'année 
+🌌 QCM Interactif – Projet NSI
 
-Un petit projet full NSI vibes où j’ai codé un système de QCM interactif. Objectif : créer une appli simple, rapide et intuitive pour réviser, tester ses connaissances et récupérer un score final.
+Un projet de QCM entièrement réalisé en JavaScript, HTML et CSS, avec un fond étoilé animé pour donner un vrai mood futuriste. Le but du projet était de créer une interface simple, intuitive et agréable pour répondre à une série de questions et obtenir un score final.
 
-🚀 Fonctionnalités
+✨ Fonctionnalités
 
-📌 Questions aléatoires ou dans l’ordre
+📚 Affichage dynamique des questions en JavaScript
 
-✔️ Vérification automatique des réponses
+🎨 Interface animée avec un fond d’étoiles (canvas / animation CSS)
 
-🧮 Score final affiché en fin de partie
+✔️ Validation automatique des réponses
 
-🔄 Rejouer une nouvelle session
+📊 Score final affiché à la fin du QCM
 
-🗂️ Questions stockées dans un fichier / une liste (selon ta version)
+🔁 Possibilité de recommencer une nouvelle session
 
-🎨 Interface claire (console / TKinter / Web selon ton implémentation)
+💾 Questions configurées directement dans le code (JSON/objet JS)
 
-🛠️ Tech utilisé
+🛠️ Technologies utilisées
 
-🐍 Python (logique + moteur du QCM)
+Voici la répartition du stack utilisé dans le projet :
 
-📁 Fichiers externes pour les questions (JSON / CSV / txt selon ton projet)
+JavaScript – 37.5%
+→ logique du QCM, gestion des réponses, affichage dynamique
 
-(Optionnel) Interface graphique : Tkinter / HTML-CSS-JS
+HTML – 32.1%
+→ structure du QCM, boutons, layout
 
-📚 Organisation du code
+CSS – 17.7%
+→ design, animations, fond étoilé stylé
 
-main.py → lancement du programme
+Python – 12.7%
+→ utilisé uniquement pour quelques tests / génération de fichiers si nécessaire
 
-questions.json (ou autre format) → banque de questions
+🚀 Lancer le projet
 
-qcm.py → fonctions pour afficher les questions, gérer les réponses, calculer le score
+Aucune installation compliquée, juste :
 
-🎯 Objectif pédagogique
+1️⃣ Télécharger ou cloner le projet
+git clone https://github.com/ton-user/ton-projet-qcm.git
+cd ton-projet-qcm
 
-Manipuler des structures de données
+2️⃣ Lancer le QCM
 
-Créer un programme interactif
+Ouvre simplement index.html dans ton navigateur :
 
-Gérer les entrées/sorties utilisateur
+./index.html
 
-Structurer un mini-projet comme un vrai dev
 
-🏁 Résultat
+(ou double-clic, ça marche aussi)
 
-Un QCM fonctionnel, modulable, que tu peux enrichir avec plus de questions, un timer, un système de niveaux… bref, upgrade à volonté.
+🎯 Objectif du projet
+
+Utiliser le DOM en JavaScript
+
+Créer une interface interactive
+
+Approfondir l’utilisation de HTML/CSS
+
+Produire un mini-projet élégant et fonctionnel
